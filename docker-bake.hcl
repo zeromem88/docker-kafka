@@ -6,22 +6,24 @@
 
 group "default" {
   targets = [
-    "3_5_1-2_12",
-    "3_5_1-2_13",
-
-    "3_6_0-2_12",
-    "3_6_0-2_13"
+#    "3_5_1-2_12",
+#    "3_5_1-2_13",
+#    "3_4_1-2_12",
+    "3_4_1-2_13",
+     
+#    "3_6_0-2_12",
+#    "3_6_0-2_13"
   ]
 }
 
 variable "JRE" {
-  default = "eclipse-temurin:21.0.1_12-jre-jammy"
+  default = "eclipse-temurin:17-jre-jammy"
 }
 
 target "base-jre" {
   dockerfile = "Dockerfile"
   context = "."
-  platforms = ["linux/amd64", "linux/arm64/v8"]
+  platforms = ["linux/amd64"]
 }
 
 target "3_5_1-2_12" {
@@ -40,6 +42,26 @@ target "3_5_1-2_13" {
   args = {
     jre = "${JRE}"
     kafka = "3.5.1"
+    scala = "2.13"
+  }
+}
+
+target "3_4_1-2_12" {
+  inherits = ["base-jre"]
+  tags = ["moukoublen/kafka:3.4.1-2.12"]
+  args = {
+    jre = "${JRE}"
+    kafka = "3.4.1"
+    scala = "2.12"
+  }
+}
+
+target "3_4_1-2_13" {
+  inherits = ["base-jre"]
+  tags = ["moukoublen/kafka:3.4.1-2.13-tc"]
+  args = {
+    jre = "${JRE}"
+    kafka = "3.4.1"
     scala = "2.13"
   }
 }

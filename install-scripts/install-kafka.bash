@@ -18,6 +18,8 @@ url=$(curl --fail --silent --stderr /dev/null "https://www.apache.org/dyn/closer
 if [[ ! $(curl --fail --silent --head "${url}") ]]; then
   url="https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/${FILENAME}"
 fi
+url="https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/${FILENAME}"
+
 
 echo "Downloading Kafka from $url"
 curl --fail --silent --show-error --location "${url}" --output "/tmp/${FILENAME}"

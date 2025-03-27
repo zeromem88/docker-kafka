@@ -17,7 +17,7 @@ set -e
 apt-get update
 apt-get install -y \
     jq sed bash curl acl ca-certificates \
-    gzip libc6 procps tar zlib1g
+    gzip libc6 procps tar zlib1g iproute2
 eot
 
 #SHELL ["/usr/bin/bash", "-c"]
